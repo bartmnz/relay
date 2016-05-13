@@ -1,6 +1,5 @@
 CFLAGS+= -std=c11 -Wall -Werror -Wextra -pedantic -Wfloat-equal -Waggregate-return -Wstack-usage=1024 
-CFLAGS+=-D _XOPEN_SOURCE=500
-CFLAGS+=-D _POSIX_C_SOURCE=200809L
+#CFLAGS+=-D GNU_SOURCE
 
 TARGET1=dispatcher
 TARGET2=listener

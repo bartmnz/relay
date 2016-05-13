@@ -38,7 +38,7 @@ int main(void)
         exit(1);
     }
 
-    printf("Connected.\n");
+    printf("Connected. on %d\n", s);
 
     done = 0;
 
