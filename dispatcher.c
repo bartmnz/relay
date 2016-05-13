@@ -14,11 +14,12 @@
 #include <sys/socket.h>
 #include <sys/un.h>
 #include <sys/time.h>
+#include <sys/stat.h>
 
 
 
 
-#define SOCK_PATH "echo_socket"
+#define SOCK_PATH "/home/sbartholomew/echo_socket"
 
 /*void * get_in_addr (struct sockaddr *sa){
   if (sa->sa_family == AF_INET) {
@@ -31,7 +32,7 @@
 
 int main(void)
 {
-    int s, s2, nbytes, len;
+	int s, s2, nbytes, len;
     struct sockaddr_un local;
     char str[100];
     fd_set master;		// master file descriptor list
@@ -43,6 +44,8 @@ int main(void)
     int fd_MAX;
 
 
+    //mkdir("/home/sbartholomew/temp", 777);
+
     if ((s = socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {
         perror("socket");
         exit(1);
@@ -50,6 +53,7 @@ int main(void)
     int enable = 1;
     if (setsockopt(s, SOL_SOCKET, SO_REUSEADDR, &enable, sizeof(int)) < 0)
         perror("setsockopt(SO_REUSEADDR) failed");
+
 
     local.sun_family = AF_UNIX;
     strcpy(local.sun_path, SOCK_PATH);
@@ -60,6 +64,7 @@ int main(void)
         exit(1);
     }
 
+    chmod(SOCK_PATH, 0777);
     if (listen(s, 5) == -1) {
         perror("listen");
         exit(1);
@@ -106,6 +111,7 @@ int main(void)
     	    						}
     	    					}
     	    				}
+
     	    			}
     	    		}
     	    	}
