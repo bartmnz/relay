@@ -27,6 +27,7 @@ int main(void)
 	int s, s2, nbytes, len;
     struct sockaddr_un local;
     char str[100];
+    //memset(str, '0', sizeof(str));
     fd_set master;		// master file descriptor list
     fd_set read_fds;		// temp file descriptor list for select()
     FD_ZERO (&master);		// clear the master and temp sets
@@ -91,12 +92,12 @@ int main(void)
     	    				}
     	    			}
     	    		} else if (i == STDIN_FILENO) {
+    	    			nbytes = 0;
     	    			if ((nbytes = read (i, str, sizeof str)) > 0) {
-    	    				printf ("Read from stdin :%s\n", str);
     	    				for (i = 0; i <= fd_MAX; i++) {
     	    					if (FD_ISSET (i, &master) && i != STDIN_FILENO && i != s) {
     	    						//master is all connected clients listening socket and STDIN
-    	    						printf ("Sending STDIN to client socket: %d\n", i);
+    	    						//printf ("Sending STDIN to client socket: %d\n", i);
     	    						//i is a client socket & read froms STDIN
     	    						if (send (i, str, nbytes, 0) == -1) {
     	    							perror ("send");
@@ -105,6 +106,7 @@ int main(void)
     	    				}
 
     	    			}
+    	    			//memset(str, '0', sizeof(str));
     	    		}
     	    	}
     	    }
