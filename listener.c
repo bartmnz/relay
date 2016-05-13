@@ -43,10 +43,7 @@ int main(void)
     done = 0;
 
     do{
-    	/*if (send(s, str, strlen(str), 0) == -1) {
-            perror("send");
-            exit(1);
-        }*/
+
 
         if ((t=recv(s, str, 100, 0)) > 0) {
             str[t] = '\0';
