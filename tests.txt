@@ -1,0 +1,12 @@
+Input data larger than buffer
+Interrupts – ctrl-c ctrl-d etc
+Non aski characters
+Run listener and dispatcher in different directories
+Run multiple listeners
+Exit a listener while dispatcher is running
+Exiting dispatcher while listeners are running
+Input in a listener
+Start listener without dispatcher running
+Input in dispatcher without any listeners
+Run dispatcher and listener by different users
+Listener should Exit on ctrl-c
